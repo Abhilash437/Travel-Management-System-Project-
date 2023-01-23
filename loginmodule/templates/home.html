@@ -1,0 +1,155 @@
+<!-- home.html -->
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{% static '/loginmodule/css/font-awesome.css' %}">
+	<link rel="stylesheet" href="{% static '/loginmodule/css/style.css' %}">
+    <link rel="stylesheet" href="{% static '/loginmodule/css/grid.css' %}">
+    <link href="//fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+	<link href="//fonts.googleapis.com/css?family=Raleway:400,500,600,700" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Titan+One&family=Ubuntu:wght@700&family=VT323&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <!-- <div class="navigation">
+            <li><h3 style="color: yellow; ">Travel Management Website</h3></li>
+            <ul class="menu">
+
+                <li ><a href="/loginmodule/home/" style="color: yellow;">Home</a></li>
+                {% if request.user.is_authenticated %}
+                    <li><a href="/loginmodule/logout/" style="color: yellow;">Logout</a></li>
+                    {% if request.session.temp != "abc" %}
+                        <li><a href="/BookTicketApp/booking_history/" style="color: yellow;">Booking History</a> </li>
+                    {% else %}
+                        <li><a href="/BookTicketApp/book_ticket/" style="color: yellow;">Book Tour</a></li>
+                        {% endif %}
+                {% else %}
+                    <li><a href="/loginmodule/aboutus/" style="color: yellow;">About Us</a></li>
+                    <li><a href="/SignupApp/signup/" style="color: yellow;">SignUp</a></li>
+                {% endif %}
+                    
+                     <li><a href="/loginmodule/login/" style="color: yellow;">Login</a></li>
+            </ul>
+                {% if request.user.is_authenticated %}
+                     <br><h1 style="color:red " align="right" style="color: yellow;">Welcome  {{ request.session.full_name }}</h1>
+                {% endif %}
+        </div> -->
+        <nav class="navbar navbar-expand-lg bg-dark">
+            <div class="container-fluid">
+              <a class="navbar-brand text-white" href="/loginmodule/home/">Travello</a>
+              <button class="navbar-toggler bg-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon "></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ">
+                  <li class="nav-item">
+                    <a class="nav-link active text-white" aria-current="page" href="/loginmodule/home/">Home</a>
+                  </li>
+                  {% if request.user.is_authenticated %}
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="/loginmodule/logout/">Logout</a>
+                        </li>
+                        {% if request.session.temp != "abc" %}
+                            <li class="nav-item">
+                                <a class="nav-link text-white" href="/BookTicketApp/booking_history/">Booking History</a>
+                            </li>
+                        {% else %}
+                            <li class="nav-item">
+                                <a class="nav-link text-white" href="/BookTicketApp/book_ticket/">Booking Tour</a>
+                            </li>
+                        {% endif %}
+                    {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link text-white" aria-current="page" href="/loginmodule/aboutus/">About Us</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" aria-current="page" href="/SignupApp/signup/">Sign Up</a>
+                        </li>
+                    {% endif %}
+                        <li class="nav-item">
+                            <a class="nav-link text-white" aria-current="page" href="/loginmodule/login/">Login</a>
+                        </li>
+                </ul>
+              </div>
+            </div>
+          </nav>
+    </header>
+    {% block content %}
+    <main role="main">
+        <section class="jumbotron text-center align-items-center d-flex justify-content-center" style="height:70vh;">
+            <div class="container">
+            <h1 class="jumbotron-heading" style="font-family: 'Ubuntu', sans-serif; color:white; font-size:10rem;">Travello</h1>
+            <p class="lead text-muted">Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores, non.</p>
+            </div>
+        </section>
+
+        <div class="album py-5 bg-light">
+            <center>
+                <h1 class="jumbotron-heading" style="font-family: 'Ubuntu', sans-serif;  font-size:5rem;">Our Packages</h1>
+            </center>
+            
+            <!-- <div class="card-group">
+                {% for pack in packs %} 
+                    <div class="card w-25 m-5">
+                    <img class="card-img-top w-100" src="{% static '/loginmodule/images/bg.jpg' %}" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title" style="font-family: 'Ubuntu', sans-serif; font-size:2rem;">{{ pack.pname }}</h5>
+                        <p class="card-text">₹{{ pack.amount }}</p>
+                    </div>
+                    </div>
+                {% endfor %}
+            </div> -->
+            <div class="row row-cols-1 row-cols-md-3 g-4 m-2">
+                {% for pack in packs %} 
+                <div class="col">
+                  <div class="card">
+                    <img src="https://mdbcdn.b-cdn.net/img/new/standard/city/041.webp" class="card-img-top"
+                      alt="Hollywood Sign on The Hill" />
+                    <div class="card-body">
+                      <h5 class="card-title">{{ pack.pname }}</h5>
+                      <p class="card-text">
+                        ₹{{ pack.amount }}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                {% endfor %}
+              </div>
+            <center>
+                <a href="/BookTicketApp/book_ticket/"><u style="color:seashell"><h1 style="font-family: 'Ubuntu', sans-serif; color:white; font-size:1rem;" class="btn btn-primary" align="center">Book tour</h1></u></a>
+            </center>
+            
+        </div>
+        
+    </main>
+    
+          <!-- <table border="1" style="color: yellow; background-color: green; opacity: 70%;" align="center">
+                <tr><th>Package Name</th><th>Amount</th></tr>
+                {% for pack in packs %}
+                    <tr><td>{{ pack.pname }}</td><td>{{ pack.amount }}</td></tr>
+                {% endfor %}
+            </table> -->
+            <!-- <div class="row">
+                {% for pack in packs %}
+                    <div class="col-sm-3">
+                    <div class="card">
+                        <div class="card-body">
+                        <h5 class="card-title">{{ pack.pname }}</h5>
+                        <p class="card-text">{{ pack.amount }}</p>
+                        </div>
+                    </div>
+                    </div>
+                {% endfor %}
+              </div> -->
+            
+        
+        
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+    {% endblock %}
+</body>
+</html>
